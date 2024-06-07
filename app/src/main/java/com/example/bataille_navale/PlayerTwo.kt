@@ -1,5 +1,6 @@
 package com.example.bataille_navale
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,6 @@ class PlayerTwo : AppCompatActivity() {
 
         val currentDifficulty = intent.extras?.getString("DIFFICULTY")
         val currentInstruction = intent.extras?.getString("INSTRUCTIONS")
-        val playerOneShip = intent.extras?.getString("PLAYERONESHIP")
 
         findViewById<TextView>(R.id.currentDifficulty).text = currentDifficulty
         findViewById<TextView>(R.id.playerTwoInstructions).text = currentInstruction
@@ -107,6 +107,10 @@ class PlayerTwo : AppCompatActivity() {
 
         if(thisPlayerTwoCloseToShip == 0){
             findViewById<TextView>(R.id.playerTwoResult).text = "C'est gagné !"
+            val intent = Intent(this, Score::class.java)
+            intent.putExtra("ISWIN", "BRAVO ! You find the ship !")
+            intent.putExtra("SCORE", "0")
+            startActivity(intent)
         }
         if(thisPlayerTwoCloseToShip == 1) {
             findViewById<TextView>(R.id.playerTwoResult).text = "Tu es proche"
