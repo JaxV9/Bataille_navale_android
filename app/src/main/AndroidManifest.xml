@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Bataille_navale"
         tools:targetApi="31">
         <activity
+            android:name=".PlayerTwo"
+            android:exported="false"
+            android:label="@string/title_activity_player_two"
+            android:theme="@style/Theme.Bataille_navale" />
+        <activity
             android:name=".PlayerOne"
             android:exported="false" />
         <activity

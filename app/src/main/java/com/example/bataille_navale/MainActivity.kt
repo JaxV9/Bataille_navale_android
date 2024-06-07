@@ -16,11 +16,13 @@ class MainActivity : AppCompatActivity() {
         easyBtn.setOnClickListener {
             val intent = Intent(this, PlayerOne::class.java)
             intent.putExtra("DIFFICULTY", "easy")
+            intent.putExtra("INSTRUCTIONS", "Player 1, place your ship on the grid.")
             startActivity(intent)
         }
         difficultBtn.setOnClickListener {
             val intent = Intent(this, PlayerOne::class.java)
             intent.putExtra("DIFFICULTY", "difficult")
+            intent.putExtra("INSTRUCTIONS", "Player 1, place your ship on the grid.")
             startActivity(intent)
         }
 
