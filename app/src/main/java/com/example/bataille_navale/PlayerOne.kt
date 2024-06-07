@@ -76,18 +76,13 @@ class PlayerOne : AppCompatActivity() {
             C6.visibility = View.INVISIBLE
             D6.visibility = View.INVISIBLE
         }
-        if(currentDifficulty == "difficult") {
-
-        }
     }
 
     private fun placeShip(button: Button) {
-        button.setOnClickListener {
-            val intent = Intent(this, PlayerOne::class.java)
+            val intent = Intent(this, PlayerTwo::class.java)
             intent.putExtra("DIFFICULTY", "easy")
             intent.putExtra("INSTRUCTIONS", "Player 2, try to find the ship.")
             intent.putExtra("PLAYERONESHIP", button.text.toString())
             startActivity(intent)
-        }
     }
 }
