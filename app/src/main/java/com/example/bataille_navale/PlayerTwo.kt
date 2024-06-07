@@ -10,6 +10,8 @@ import android.widget.TextView
 import org.w3c.dom.Text
 
 class PlayerTwo : AppCompatActivity() {
+
+    private var currentAttempt = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_two)
@@ -17,8 +19,10 @@ class PlayerTwo : AppCompatActivity() {
         val currentDifficulty = intent.extras?.getString("DIFFICULTY")
         val currentInstruction = intent.extras?.getString("INSTRUCTIONS")
 
+
         findViewById<TextView>(R.id.currentDifficulty).text = currentDifficulty
         findViewById<TextView>(R.id.playerTwoInstructions).text = currentInstruction
+        findViewById<TextView>(R.id.attempt).text = "Attempt: $currentAttempt"
 
         val A1 = findViewById<Button>(R.id.A1)
         A1.setOnClickListener { findShip(A1) }
@@ -90,9 +94,9 @@ class PlayerTwo : AppCompatActivity() {
             else -> 0
         }
     }
-    private fun findShip(button: Button){
-
-
+    private fun findShip(button: Button) {
+        currentAttempt += 1
+        findViewById<TextView>(R.id.attempt).text = "Attempt: $currentAttempt"
         val playerOnePos = intent.extras?.getString("PLAYERONESHIP")
         val playerOnePosArray = arrayOf(convertLetterToNumber(playerOnePos!![0].toString()), playerOnePos.substring(1).toInt())
 
@@ -109,7 +113,7 @@ class PlayerTwo : AppCompatActivity() {
             findViewById<TextView>(R.id.playerTwoResult).text = "C'est gagné !"
             val intent = Intent(this, Score::class.java)
             intent.putExtra("ISWIN", "BRAVO ! You find the ship !")
-            intent.putExtra("SCORE", "0")
+            intent.putExtra("SCORE", currentAttempt.toString())
             startActivity(intent)
         }
         if(thisPlayerTwoCloseToShip == 1) {
