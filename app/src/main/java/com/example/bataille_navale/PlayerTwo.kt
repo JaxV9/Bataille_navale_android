@@ -19,10 +19,10 @@ class PlayerTwo : AppCompatActivity() {
         val currentDifficulty = intent.extras?.getString("DIFFICULTY")
         val currentInstruction = intent.extras?.getString("INSTRUCTIONS")
 
-
         findViewById<TextView>(R.id.currentDifficulty).text = currentDifficulty
         findViewById<TextView>(R.id.playerTwoInstructions).text = currentInstruction
         findViewById<TextView>(R.id.attempt).text = "Attempt: $currentAttempt"
+        findViewById<TextView>(R.id.playerTwoResult).text = intent.extras?.getString("PLAYERONESHIP")
 
         val A1 = findViewById<Button>(R.id.A1)
         A1.setOnClickListener { findShip(A1) }
@@ -109,7 +109,7 @@ class PlayerTwo : AppCompatActivity() {
 
         val thisPlayerTwoCloseToShip = kotlin.math.abs(playerTwoCloseToShip)
 
-        if(thisPlayerTwoCloseToShip == 0){
+        if(button.text == playerOnePos){
             findViewById<TextView>(R.id.playerTwoResult).text = "C'est gagné !"
             val intent = Intent(this, Score::class.java)
             intent.putExtra("ISWIN", "BRAVO ! You find the ship !")
