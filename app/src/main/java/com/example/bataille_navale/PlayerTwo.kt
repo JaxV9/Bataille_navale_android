@@ -1,6 +1,7 @@
 package com.example.bataille_navale
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -73,7 +74,7 @@ class PlayerTwo : AppCompatActivity() {
         val D6 = findViewById<Button>(R.id.D6)
         D6.setOnClickListener { findShip(D6) }
 
-        if(currentDifficulty == "easy") {
+        if(currentDifficulty == "Easy") {
             A5.visibility = View.INVISIBLE
             B5.visibility = View.INVISIBLE
             C5.visibility = View.INVISIBLE
@@ -108,6 +109,7 @@ class PlayerTwo : AppCompatActivity() {
         val playerTwoCloseToShip = calcCloseLetter + calcCloseNumber
 
         val thisPlayerTwoCloseToShip = kotlin.math.abs(playerTwoCloseToShip)
+        button.setBackgroundColor(Color.parseColor("#5E86ED"))
 
         if(button.text == playerOnePos){
             findViewById<TextView>(R.id.playerTwoResult).text = "C'est gagné !"
