@@ -10,6 +10,7 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    //Je définis ici les choix du joueur
     var currentOpponent = ""
     var currentDifficulty = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         val easyBtn = findViewById<Button>(R.id.buttonEasy)
         val difficultBtn = findViewById<Button>(R.id.buttonDifficult)
 
+        //Choix de la difficulté en mettant à jour currentDifficulty
         easyBtn.setOnClickListener {
             it.setBackgroundColor(Color.parseColor("#5E86ED"))
             difficultBtn.setBackgroundColor(Color.parseColor("#CBCBCB"))
@@ -59,14 +61,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         newGame.setOnClickListener {
-
+            //Si le mode de jeu est joueur contre joueur, on passe à l'écran du joueur 1
             if(currentOpponent == "J1 vs J2"){
                 val intent = Intent(this, PlayerOne::class.java)
                 intent.putExtra("DIFFICULTY", currentDifficulty)
                 intent.putExtra("INSTRUCTIONS", "Player 1, place your ship on the grid.")
                 startActivity(intent)
             }
-
+            //Si le mode de jeu est contre l'IA, on passe directement à l'écran du joueur 2
             if(currentOpponent == "AI"){
                 val currentChoice = ""
                 val intent = Intent(this, PlayerTwo::class.java)
@@ -75,10 +77,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("PLAYERONESHIP", AIChoiceGenerated(currentDifficulty))
                 startActivity(intent)
             }
-
         }
-
-
     }
 
     //Je rends disponible le bouton NewGame quand le joueur a choisi l'adversaire et la difficulté
@@ -89,8 +88,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Choix random de la cellule par l'IA selon la difficulté
     private fun AIChoiceGenerated(difficulty: String):String {
-
         var randomChoice = ""
         if(difficulty == "Easy") {
             val choices = arrayOf(

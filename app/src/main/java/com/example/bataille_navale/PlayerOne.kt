@@ -14,16 +14,21 @@ class PlayerOne : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_one)
-        //J'affiche la bonne difficulté
+        //On affiche la bonne difficulté
         val currentDifficulty = intent.extras?.getString("DIFFICULTY")
-        //J'affiche les instructions correspondant au joueur
+
+        //On affiche les instructions correspondant au joueur 1
         val currentInstruction = intent.extras?.getString("INSTRUCTIONS")
+
+        //On affiche les infos utiles au joueur 1
         findViewById<TextView>(R.id.currentDifficulty).text = currentDifficulty
         findViewById<TextView>(R.id.playerOneInstructions).text = currentInstruction
         findViewById<TextView>(R.id.currentChoice).text = "Your ship in: $currentChoice"
+
         //Ce bouton sert à confirmer le choix du joueur 1
         val btnChoice = findViewById<Button>(R.id.confirmChoicePlayerOne)
 
+        //passage à la vue du joueur 2 quand le joueur 1 confirme son choix.
         btnChoice.setOnClickListener {
             val intent = Intent(this, PlayerTwo::class.java)
             intent.putExtra("DIFFICULTY", currentDifficulty)
@@ -75,6 +80,7 @@ class PlayerOne : AppCompatActivity() {
 
     }
 
+    //Le joueur 1 place son bateau
     private fun placeShip(button: Button) {
         if(button.text !== ""){
             findViewById<TextView>(R.id.currentChoice).text = "Your ship in: ${button.text}"

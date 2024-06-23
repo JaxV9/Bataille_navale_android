@@ -11,21 +11,24 @@ class Score : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
 
+        //On récupère les propriétés de la vue du joueur 2
         val isWin = intent.extras?.getString("ISWIN")
+        findViewById<TextView>(R.id.isWin).text = isWin
         val currentScore = intent.extras?.getString("SCORE")
 
-        //Si le score est null, alors il est égale à 0
+        //Convertion de currentScore en int
         val currentScoreNumber = currentScore?.toInt() ?: 0
 
-        findViewById<TextView>(R.id.isWin).text = isWin
+        //Changement d'orthographe si singulier ou pluriel, et on affiche le nombre de tentative
         if(currentScoreNumber == 1){
+
             findViewById<TextView>(R.id.score).text = "${currentScore} attempt"
         }
         if(currentScoreNumber > 1){
             findViewById<TextView>(R.id.score).text = "${currentScore} attempts"
         }
 
-
+        //Bouton pour retourner à l'accueil
         findViewById<Button>(R.id.goHome).setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
